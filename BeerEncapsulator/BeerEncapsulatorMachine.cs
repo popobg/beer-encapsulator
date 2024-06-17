@@ -9,49 +9,49 @@
 
         public BeerEncapsulator(double beerVolume, int numberOfBottles, int numberOfCapsules)
         {
-            BeerVolume = beerVolume;
-            Bottles = numberOfBottles;
-            Capsules = numberOfCapsules;
+            this.BeerVolume = beerVolume;
+            this.Bottles = numberOfBottles;
+            this.Capsules = numberOfCapsules;
         }
 
         internal double BeerVolume
         {
-            get { return _beerVolume; }
+            get { return this._beerVolume; }
             set
             {
                 // the user can only add more beer,
                 // so the value must be bigger than the actual value
-                if (value <= _beerVolume)
+                if (value <= this._beerVolume)
                 {
                     return;
                 }
-                _beerVolume = value;
+                this._beerVolume = value;
             }
         }
 
         internal int Bottles
         {
-            get { return _bottles; }
+            get { return this._bottles; }
             set
             {
-                if (value <= _bottles)
+                if (value <= this._bottles)
                 {
                     return;
                 }
-                _bottles = value;
+                this._bottles = value;
             }
         }
 
         internal int Capsules
         {
-            get { return _capsules; }
+            get { return this._capsules; }
             set
             {
-                if (value <= _capsules)
+                if (value <= this._capsules)
                 {
                     return;
                 }
-                _capsules = value;
+                this._capsules = value;
             }
         }
 
@@ -59,7 +59,7 @@
         {
             if (beer > 0)
             {
-                _beerVolume += beer;
+                this._beerVolume += beer;
             }
         }
 
@@ -67,7 +67,7 @@
         {
             if (bottles > 0)
             {
-                _bottles += bottles;
+                this._bottles += bottles;
             }
         }
 
@@ -75,13 +75,13 @@
         {
             if (capsules > 0)
             {
-                _capsules += capsules;
+                this._capsules += capsules;
             }
         }
 
         private bool FillBottle()
         {
-            if (this._bottles > 0 && this._capsules > 0 && _beerVolume > 33)
+            if (this._bottles > 0 && this._capsules > 0 && this._beerVolume > 33)
             {
                 this._bottles--;
                 this._capsules--;
@@ -95,13 +95,11 @@
         {
             if (this._bottles == 0)
             {
-                int bottlesNeeded = bottlesLeftToProduce;
-                Console.WriteLine($"There is no bottle left. Please add {bottlesNeeded} bottle(s).");
+                Console.WriteLine($"There is no bottle left. Please add {bottlesLeftToProduce} bottle(s).");
             }
             if (this._capsules == 0)
             {
-                int capsulesNeeded = bottlesLeftToProduce;
-                Console.WriteLine($"There is no capsule left. Please add {capsulesNeeded} capsule(s).");
+                Console.WriteLine($"There is no capsule left. Please add {bottlesLeftToProduce} capsule(s).");
             }
             if (this._beerVolume < 33)
             {
