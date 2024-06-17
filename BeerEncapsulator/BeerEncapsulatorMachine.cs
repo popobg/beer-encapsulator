@@ -7,7 +7,14 @@
         private int _bottles = 0;
         private int _capsules = 0;
 
-        public BeerEncapsulator(double beerVolume, int numberOfBottles, int numberOfCapsules)
+        /// <summary>
+        /// Constructor method <c>BeerEncapsulator</c>.
+        /// All parameters must be positive numbers.
+        /// </summary>
+        /// <param name="beerVolume"></param>
+        /// <param name="numberOfBottles"></param>
+        /// <param name="numberOfCapsules"></param>
+        internal BeerEncapsulator(double beerVolume, int numberOfBottles, int numberOfCapsules)
         {
             this.BeerVolume = beerVolume;
             this.Bottles = numberOfBottles;
@@ -79,6 +86,12 @@
             }
         }
 
+        /// <summary>
+        /// Method <c>FillBottle</c> checks if the items are available to fill a bottle ;
+        /// if it is the case, removes the item's quantity required to make a bottle.
+        /// </summary>
+        /// <returns>true if the items are available to fill a bottle,
+        /// false otherwise</returns>
         private bool FillBottle()
         {
             if (this._bottles > 0 && this._capsules > 0 && this._beerVolume > 33)
@@ -91,6 +104,11 @@
                 return false;
         }
 
+        /// <summary>
+        /// Method <c>DisplayMissingItems</c> displays how many items
+        /// are missing to reach the number of bottles to product.
+        /// </summary>
+        /// <param name="bottlesLeftToProduce"></param>
         private void DisplayMissingItems(int bottlesLeftToProduce)
         {
             if (this._bottles == 0)
@@ -108,6 +126,14 @@
             }
         }
 
+        /// <summary>
+        /// Method <c>ProduceEncapsulatedBeerBottles</c>.
+        /// Takes a number of bottles to encapsulate ;
+        /// returns the number of 33cL beer bottles that have been encapsulated
+        /// with the available stock.
+        /// </summary>
+        /// <param name="bottlesToProduce"></param>
+        /// <returns>bottlesProduct (int)</returns>
         internal int ProduceEncapsulatedBeerBottles(int bottlesToProduce)
         {
             if (bottlesToProduce <= 0 )
@@ -123,14 +149,6 @@
                 if (!this.FillBottle())
                 {
                     DisplayMissingItems(bottlesToProduce - i);
-
-                    if (i == 0)
-                    {
-                        Console.WriteLine("No bottle has been product.");
-                        return BottlesProduct;
-                    }
-
-                    Console.WriteLine($"Only {i} bottle(s) of 33cL have been product.");
                     return BottlesProduct;
                 }
                 else
@@ -139,7 +157,7 @@
                 }
             }
 
-            Console.WriteLine($"{bottlesToProduce} beer bottle(s) of 33cL have been product. There is {this._bottles} bottle(s), {this._capsules} capsule(s) and {this._beerVolume}cL of beer left in the machine.");
+            Console.WriteLine($"There is {this._bottles} bottle(s), {this._capsules} capsule(s) and {this._beerVolume}cL of beer left in the machine.");
             return BottlesProduct;
         }
     }
